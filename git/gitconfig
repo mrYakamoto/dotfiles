@@ -1,12 +1,10 @@
 [user]
-  name = Dustin Martin
+  name = Grant Redfearn
 [color]
   diff = true
   ui = true
 [push]
   default = simple
-[credential]
-  helper = osxkeychain
 [core]
   excludesfile = ~/dotfiles/git/gitignore
 [init]
