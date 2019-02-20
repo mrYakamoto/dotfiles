@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const relativePath = path.normalize(
+  path.relative(process.argv[2], process.argv[3]),
+);
+
+if (relativePath.startsWith('./') || relativePath.startsWith('../')) {
+  console.log(relativePath);
+} else {
+  console.log(`./${relativePath}`);
+}
+

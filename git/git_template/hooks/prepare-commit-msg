@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+const { execSync } = require('child_process');
+const { writeFileSync, readFileSync } = require('fs');
+
+const messageFilePath = process.argv[2];
+const commitMode = process.argv[3];
+const branchName = execSync('git rev-parse --abbrev-ref HEAD')
+    .toString()
+    .trim();
+const ticketPattern = /(^[A-Za-z]+-[0-9]+)/g;
+const matches = branchName.match(ticketPattern);
+
+const exit = message => {
+    console.log(`PREPARE-COMMIT-MSG: ${message}`);
+    process.exit(0);
+};
+
+if (!matches) {
+    exit('no ticket in branch name');
+}
+
+if (commitMode === 'merge' || commitMode === 'squash') {
+    exit(`${commitMode} ignored`);
+}
+
+let ticket;
+
+// If there is a match when we've successfully found the ticket number
+if (matches.length) {
+    ticket = matches[0].trim().toUpperCase();
+}
+
+if (ticket) {
+    const oldCommitMessage = readFileSync(messageFilePath).toString();
+    const firstLine = oldCommitMessage.split('\n')[0];
+
+    // When ammending the first line of the message file will be empty
+    const existingMessage = firstLine.trim().length !== 0;
+
+    if (commitMode === 'commit' && existingMessage) {
+        exit(`amend ignored`);
+    }
+
+    if (oldCommitMessage.startsWith(ticket)) {
+        exit('ticket already on commit message');
+    }
+
+    const newCommitMessage = `${ticket} ${oldCommitMessage}`;
+
+    writeFileSync(messageFilePath, newCommitMessage);
+}

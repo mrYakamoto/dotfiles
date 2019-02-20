@@ -1,0 +1,153 @@
+alias ..="cd .."
+alias ...="cd ../.."
+
+alias ctags="`brew --prefix`/bin/ctags"
+
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+
+alias cat='bat --paging always'
+
+# Vim aliases
+alias vi='nvim'
+alias vim='nvim'
+
+alias day="dayone2 new "
+
+# Jump to a directory
+alias j='fasd_cd -d'
+alias v='f -e nvim'
+
+# Tmux
+alias tmux="TERM=screen-256color-bce tmux"
+
+# Miscellaneous Helpers
+alias reload="source ~/.zshrc"
+
+# Set vim as the editor
+export EDITOR='nvim'
+
+# List all files colorized in long format, including dot files
+alias ls="exa -a --sort=type"
+alias ll="exa -la --sort=type --git"
+
+# Git
+alias g='git'
+
+# Shorten common commands
+alias gst='g status'
+alias gpl='g pull'
+alias gf='g fetch'
+alias gprc='g rebase --continue'
+alias gpra='g rebase --abort'
+alias gm='g merge'
+alias gbv='git branch -v'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gpr='git pull --rebase'
+alias gpr-='git rebase --continue'
+alias gpl='git pull'
+alias gs='git status'
+alias ga='git add'
+alias gcm='git commit -m'
+alias glpo="git log --pretty=oneline"
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gst='git stash'
+alias gstp='git stash pop'
+alias gd='git diff'
+alias grh='git reset HEAD'
+alias grv='git remote -v'
+
+
+alias c='clear'
+alias cdp='cd ~/Documents/00_Work/'
+alias cdht='cd /Applications/XAMPP/htdocs'
+alias ll='ls -la'
+alias cd..='cd ..'
+alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+alias subl='open /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias tree='ls -R | grep ":$" | sed -e "s/:$//" -e "s/[^-][^\/]*\//--/g" -e "s/^/   /" -e "s/-/|/"'
+alias cat='bat'
+
+
+# More succinct status
+alias gs='g status -sb'
+
+# Show all branches in the order of last change
+show_branches() {
+  local branches branch
+  branches=$(git branch -v --sort=-committerdate | grep -v HEAD) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+alias gb='show_branches'
+# alias gb='g for-each-ref --sort=committerdate refs/heads/ --format="%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))"'
+
+# Nicer diff
+alias gd='g diff --word-diff'
+
+# Delete a branch
+alias gdb='g branch -D'
+
+# Fancy git log
+alias gl='g log --graph --stat --abbrev-commit --date=relative'
+
+# Push branch and set the upstream
+alias gpb='g push --set-upstream origin "$(g rev-parse --abbrev-ref HEAD)"'
+
+# Safer force push
+alias gpbf='g push --set-upstream --force-with-lease origin "$(g rev-parse --abbrev-ref HEAD)"'
+
+# Pull the latest from master and rebase
+alias gup='g pull --rebase origin master'
+
+# Pull the latest from master and merge
+alias gum='g pull origin master'
+
+# Ammend a commit
+alias gam='g commit --amend --no-edit'
+
+# Save changes temporarily
+alias gwip='g commit --no-verify -m "WIP"'
+alias gwipa='g add -A && g commit --no-verify -m "WIP"'
+
+# Undo the last commit
+alias gun='g reset HEAD~1 --mixed'
+
+# Super undo using the reflog...careful. Undo your undo.
+alias gungun='g reset "HEAD@{1}"'
+
+# Delete all merged branches
+alias gcl='g branch | grep -v "master" | xargs git branch -d'
+
+# Commit
+alias gc='g commit -v -m'
+
+# Add all and commit
+alias gca='g add -u && g add . && g commit -v -m'
+
+# Create new branch
+alias gcob='g checkout -b'
+
+# Add all
+alias gaa='g add -u && g add . && g status'
+
+# Interactive adding
+alias gap='g add -p && g status'
+
+# Interactive rebase for squashing commits
+alias gir="g rebase -i origin/master"
+
+finder () {
+  open .
+}
+
+dockerstop () {
+  docker kill $(docker ps -q)
+}
+
+dockerclean () {
+  docker rm $(docker ps -a -q) && docker rmi $(docker images -q)
+}
