@@ -1,6 +1,5 @@
-# Load custom aliases
+# Load custom aliases source ~/dotfiles/zsh/aliasesV;/
 source ~/dotfiles/zsh/aliases
-
 # Fixes colors so you get 256 color support in terminal, Tmux, and Vim
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
@@ -27,9 +26,13 @@ export PATH="/Users/grantred/dotfiles/bin:$PATH"
 # Make sure Homebrew's packages before others
 export PATH="/usr/local/bin:$PATH"
 
-
+# Maverick stuff
 export PATH="/Users/grantred/Library/Python/2.7/bin:$PATH"
+export PATH="/usr/local/apache-maven-3.5.4/bin:$PATH"
 
+if [[ -f "${HOME}/.config/cloudtoken/bashrc_additions" ]]; then
+    source "${HOME}/.config/cloudtoken/bashrc_additions"
+fi
 
 # Colorize man pages
 man() {
@@ -44,6 +47,9 @@ man() {
       man "$@"
 }
 
+# Maven
+export ATLAS_MVN=/usr/local/apache-maven-3.5.4/bin/mvn
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_201`
 export FZF_DEFAULT_COMMAND='rg --files'
 
 # Load FZF

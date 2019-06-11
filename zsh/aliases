@@ -46,7 +46,6 @@ alias gbv='git branch -v'
 alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gpr='git pull --rebase'
-alias gpr-='git rebase --continue'
 alias gpl='git pull'
 alias gs='git status'
 alias ga='git add'
@@ -56,7 +55,6 @@ alias gco='git checkout'
 alias gcb='git checkout -b'
 alias gst='git stash'
 alias gstp='git stash pop'
-alias gd='git diff'
 alias grh='git reset HEAD'
 alias grv='git remote -v'
 
@@ -64,13 +62,9 @@ alias grv='git remote -v'
 alias c='clear'
 alias cdp='cd ~/Documents/00_Work/'
 alias cdht='cd /Applications/XAMPP/htdocs'
-alias ll='ls -la'
-alias cd..='cd ..'
 alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
-alias subl='open /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias tree='ls -R | grep ":$" | sed -e "s/:$//" -e "s/[^-][^\/]*\//--/g" -e "s/^/   /" -e "s/-/|/"'
-alias cat='bat'
-
+alias yarnrm='rm -rf node_modules && yarn'
+alias nvmrm='rm -rf node_modules && npm i'
 
 # More succinct status
 alias gs='g status -sb'
@@ -83,7 +77,6 @@ show_branches() {
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 alias gb='show_branches'
-# alias gb='g for-each-ref --sort=committerdate refs/heads/ --format="%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))"'
 
 # Nicer diff
 alias gd='g diff --word-diff'
@@ -93,9 +86,6 @@ alias gdb='g branch -D'
 
 # Fancy git log
 alias gl='g log --graph --stat --abbrev-commit --date=relative'
-
-# Push branch and set the upstream
-alias gpb='g push --set-upstream origin "$(g rev-parse --abbrev-ref HEAD)"'
 
 # Safer force push
 alias gpbf='g push --set-upstream --force-with-lease origin "$(g rev-parse --abbrev-ref HEAD)"'
@@ -120,19 +110,7 @@ alias gun='g reset HEAD~1 --mixed'
 alias gungun='g reset "HEAD@{1}"'
 
 # Delete all merged branches
-alias gcl='g branch | grep -v "master" | xargs git branch -d'
-
-# Commit
-alias gc='g commit -v -m'
-
-# Add all and commit
-alias gca='g add -u && g add . && g commit -v -m'
-
-# Create new branch
-alias gcob='g checkout -b'
-
-# Add all
-alias gaa='g add -u && g add . && g status'
+alias gcl='g branch | grep -v "master" | xargs git branch -D'
 
 # Interactive adding
 alias gap='g add -p && g status'
@@ -140,6 +118,8 @@ alias gap='g add -p && g status'
 # Interactive rebase for squashing commits
 alias gir="g rebase -i origin/master"
 
+# Reddit!
+alias reddit="ssh redditbox.us"
 finder () {
   open .
 }

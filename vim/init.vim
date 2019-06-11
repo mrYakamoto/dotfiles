@@ -8,6 +8,7 @@ if empty(glob("~/.config/nvim/autoload/plug.vim"))
   execute '!curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 endif
 
+" Start the plugins list
 call plug#begin('~/.config/nvim/plugged')
 
 " Finding/Navigation
@@ -50,6 +51,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-node'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'suy/vim-context-commentstring'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " Color Schemes
 Plug 'chriskempson/base16-vim'
@@ -320,8 +323,9 @@ command! FixSyntax syntax sync fromstart
 command! CloseOthers %bd|e#
 
 " Create commands for opening files in splits
-command! -bar -complete=file -nargs=1 Vedit vsplit|edit <args>
-command! -bar -complete=file -nargs=1 Hedit split|edit <args>
+command! -bar -complete=file -nargs=1 SplitV vsplit|edit <args>
+command! -bar -complete=file -nargs=1 SplitH split|edit <args>
+
 
 " Trim whitespace
 command! Trim %s/\s\+$//e
@@ -382,6 +386,7 @@ set dictionary=/usr/share/dict/words
 set spellfile=~/dotfiles/vim/custom-dictionary.utf-8.add,~/.vim-local-dictionary.utf-8.add
 nnoremap zG 2zg
 nnoremap zs :set spell!<cr>
+
 
 " Easy resizing of panes
 nnoremap <m-right> :vertical resize +3<cr>
@@ -894,4 +899,15 @@ hi def InterestingWord4 guifg=#000000 ctermfg=255 guibg=#b88853 ctermbg=197
 hi def InterestingWord5 guifg=#000000 ctermfg=255 guibg=#ff9eb8 ctermbg=93
 hi def InterestingWord6 guifg=#000000 ctermfg=0 guibg=#ff2c4b ctermbg=254
 
+" dark red
+hi tsxTagName guifg=#E06C75
+
+" orange
+hi tsxCloseString guifg=#F99575
+hi tsxCloseTag guifg=#F99575
+hi tsxAttributeBraces guifg=#F99575
+hi tsxEqual guifg=#F99575
+
+" yellow
+hi tsxAttrib guifg=#F8BD7F cterm=italic
 " }}}
