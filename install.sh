@@ -52,9 +52,6 @@ cat <<EOF > ~/dotfiles/git/gitconfig
   cmd = nvim -d \$LOCAL \$REMOTE
 EOF
 
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 # Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -73,6 +70,9 @@ mkdir -p "$HOME/.config"
 ln -s ~/dotfiles/vim ~/.config/nvim
 ln -s ~/dotfiles/git/gitignore ~/.gitignore
 ln -s ~/dotfiles/ssh/config ~/.ssh/config
+
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # set oh-my-zsh config
 cat <<EOF > ~/.zshrc
