@@ -47,7 +47,6 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gpr='git pull --rebase'
 alias gpl='git pull'
-alias gs='git status'
 alias ga='git add'
 alias gcm='git commit -m'
 alias glpo="git log --pretty=oneline"
@@ -57,14 +56,6 @@ alias gst='git stash'
 alias gstp='git stash pop'
 alias grh='git reset HEAD'
 alias grv='git remote -v'
-
-
-alias c='clear'
-alias cdp='cd ~/Documents/00_Work/'
-alias cdht='cd /Applications/XAMPP/htdocs'
-alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
-alias yarnrm='rm -rf node_modules && yarn'
-alias nvmrm='rm -rf node_modules && npm i'
 
 # More succinct status
 alias gs='g status -sb'
@@ -117,6 +108,14 @@ alias gap='g add -p && g status'
 
 # Interactive rebase for squashing commits
 alias gir="g rebase -i origin/master"
+
+# Common Tasks
+alias c='clear'
+alias cdp='cd ~/Documents/00_Work/'
+alias cdht='cd /Applications/XAMPP/htdocs'
+alias flushdns='dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+alias yarnrm='rm -rf node_modules && yarn'
+alias nvmrm='rm -rf node_modules && npm i'
 
 # Reddit!
 alias reddit="ssh redditbox.us"
