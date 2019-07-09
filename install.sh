@@ -78,7 +78,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 cat <<EOF > ~/.zshrc
 export ZSH=/Users/$USER/.oh-my-zsh
 
-ZSH_THEME="sport_256"
+ZSH_THEME="sporty_256"
 
 plugins=(
   git
