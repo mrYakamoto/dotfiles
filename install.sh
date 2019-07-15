@@ -6,7 +6,7 @@ read -p "Enter git display name: " git_display_name
 read -p "Continue with $git_email ? (Y/N)" confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 
 # set git config file
-cat <<EOF > ~/dotfiles/git/gitconfig
+cat <<EOF > ./dotfiles/git/gitconfig
 [user]
   email = $git_email
   name = $git_display_name
@@ -16,9 +16,9 @@ cat <<EOF > ~/dotfiles/git/gitconfig
 [push]
   default = simple
 [core]
-  excludesfile = ~/dotfiles/git/gitignore
+  excludesfile = ./dotfiles/git/gitignore
 [init]
-  templatedir = ~/.git_template
+  templatedir = ./.git_template
 [rebase]
   autoStash = true
 [core]
@@ -59,38 +59,10 @@ EOF
 brew tap Homebrew/bundle
 brew bundle
 
-# Move the .zshrc file that oh-my-zsh creates
-mv ~/.zshrc ~/.zshrc.oh-my-zsh
-
-# Create Projects folder
-mkdir -p "$HOME/Projects"
 mkdir -p "$HOME/.config"
 
 # link files
-ln -s ~/dotfiles/vim ~/.config/nvim
-ln -s ~/dotfiles/git/gitignore ~/.gitignore
-ln -s ~/dotfiles/ssh/config ~/.ssh/config
-
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# set oh-my-zsh config
-cat <<EOF > ~/.zshrc
-export ZSH=/Users/$USER/.oh-my-zsh
-
-ZSH_THEME="sporty_256"
-
-plugins=(
-  git
-)
-
-source $ZSH/oh-my-zsh.sh
-
-source ~/dotfiles/zsh/zshrc
-EOF
-
-# set tmux config
-cat <<EOF > ~/.tmux.conf
-source ~/dotfiles/tmux/tmux.conf
-EOF
+ln -s ./dotfiles/vim ~/.config/nvim
+ln -s ./dotfiles/git/gitignore ~/.gitignore
+ln -s ./dotfiles/ssh/config ~/.ssh/config
 
